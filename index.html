@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Meta Tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="FaUsT, ">
+    <meta name="language" content="English">
+    <meta name="description" content=":P" />
+    <meta name="author" content="seromne" />
+
+    <!-- Links Files -->
+    <link rel="shortcut icon" href="favicon.ico" type="image/png">
+    <link href="http://csshake.surge.sh/csshake.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link href="./assets/css/style.css" rel="stylesheet">
+
+    <!-- Scripts -->
+    <script type="text/javascript" src="https://www.youtube.com/iframe_api"></script>
+
+    <title>mne FaUsT</title>
+</head>
+<body>
+    <div class="preloader">
+        <div class="preloader-item-loading">wait ^</div>
+        <div class="preloader-item">click</div>
+    </div>
+
+    <div class="container_video">
+        <div id="player"></div>
+    </div>
+    <div class="info">
+        <img class="info-img shake-little shake-constant" src="./assets/img/logo.png" alt="logo">
+        <div class="info-title shake-little shake-constant">FaUsT</div>
+        <div class="info-content shake-little shake-constant">
+            <a href="https://steamcommunity.com/profiles/76561198904752164/" target="_blank" class="info-content-item">
+                <i class="fab fa-steam"></i>
+                Steam
+            </a>
+            <a href="https://vk.com/rubikov_ytp/" target="_blank" class="info-content-item">
+                <i class="fab fa-vk"></i>
+                VK
+            </a>
+        </div>
+    </div>
+    <div class="copyright"></div>
+    <footer>
+        @ <span></span> | <a class="secret" href="https://discord.gg/p4Q9x2muvh" target="_blank">FaUsT</a> | Development and Design by <a class="development" href="https://vk.com/rubikov_ytp/" target="_blank">FaUsT</a>
+    </footer>
+
+    <audio id="player-music" loop>
+        <source src="" type="audio/mpeg">
+    </audio>
+
+    <!-- Main Files -->
+    <script src="./assets/js/app.js"></script>
+    <script src="./assets/js/youtube.js"></script>
+    <!-- Components -->
+    <script src="./assets/js/components/preloader.js"></script>
+    <!-- Other -->
+    <script src="https://kit.fontawesome.com/b617dc6679.js" crossorigin="anonymous"></script>
+
+    <script>
+        const videoId = 'nwAzyAGkkZ0'; // Новый ID видео
+        YT.ready(_ => {
+            window.player = new YT.Player('player', {
+                videoId: videoId,
+                playerVars: {
+                    autoplay: 1, // Автозапуск видео
+                    controls: 0,
+                    loop: 1,
+                    playlist: videoId
+                },
+                events: {
+                    onReady: e => {
+                        e.target.setVolume(25);
+                    }
+                }
+            });
+        });
+
+        window.addEventListener('load', () => {
+            const preloader = document.querySelector('.preloader');
+            const preloaderItemLoading = document.querySelector('.preloader-item-loading');
+            const preloaderItem = document.querySelector('.preloader-item');
+
+            setTimeout(() => {
+                preloaderItemLoading.classList.add('loaded');
+                preloaderItem.classList.add('loaded');
+                preloader.classList.add('show-background'); // Показать задний фон
+            }, 3000); // Задержка для показа "click" после "wait"
+
+            preloaderItem.addEventListener('click', () => {
+                preloaderItem.classList.add('clicked');
+                preloader.classList.add('clicked');
+                setTimeout(() => {
+                    preloader.style.display = 'none';
+                }, 3000); // Время перехода в CSS
+            });
+        });
+    </script>
+</body>
+</html>
